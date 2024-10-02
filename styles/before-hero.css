@@ -105,7 +105,7 @@ ul.lentils {
   color: white;
 }
 .image-text a {
-  color: lightskyblue;
+  color: lightskyblue !important;
 }
 
 /*
