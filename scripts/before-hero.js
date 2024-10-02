@@ -26,16 +26,16 @@ $(document).ready(function() {
     .attr("tabindex","0")
     .addClass('btn-prev')
     .on({
-      click: previous.bind(null, event),
-      keypress: previous.bind(null, event)
+      click: Function.bind(previous, event),
+      keypress: Function.bind(previous, event)
     })
     .html(prevIcon);
   var nextButton = $('<div>')
     .attr("tabindex","0")
     .addClass('btn-next')
     .on({
-      click: next.bind(null, event),
-      keypress: next.bind(null, event)
+      click: Function.bind(next, event),
+      keypress: Function.bind(next, event)
     })
     .html(nextIcon);
 
