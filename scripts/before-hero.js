@@ -56,20 +56,21 @@ $(document).ready(function() {
   $('#carousel').append(lentils);
 
   // show the first one
+  setIndex(0);
   showSlide(0);
 });
 
 function previous(event) {
   if (event.type == "click" || (event.type == "keypress" && event.keyCode == 13)) {
     setIndex( updateIndex(getIndex(), 'prev', getSlideCount()) );
-    showSlide(currentIndex);
+    showSlide( getIndex() );
   }
 }
 
 function next(event) {
   if (event.type == "click" || (event.type == "keypress" && event.keyCode == 13)) {
     setIndex( updateIndex(getIndex(), 'next', getSlideCount()) );
-    showSlide(currentIndex);
+    showSlide( getIndex() );
   }
 }
 
