@@ -24,17 +24,14 @@ $(document).ready(function() {
   });
   var prevButton = $('<div>')
     .addClass('btn-prev')
-    .on('click',function() {
-      currentIndex = updateIndex(currentIndex,'prev',slideCount);
-      showSlide(currentIndex);
-    })
+    .on('click',previous(event))
+    .on('keypress', previous(event))
     .html(prevIcon);
   var nextButton = $('<div>')
+    .attr("tabindex","0")
     .addClass('btn-next')
-    .on('click',function() {
-      currentIndex = updateIndex(currentIndex,'next',slideCount);
-      showSlide(currentIndex);
-    })
+    .on('click', next(event))
+    .on('keypress', next(event))
     .html(nextIcon);
 
   navButtons.append(prevButton,nextButton);
@@ -55,6 +52,20 @@ $(document).ready(function() {
   // show the first one
   showSlide(0);
 });
+
+function previous(event) {
+  if (event.type == "click" || (event.type == "keypress" && event.keyCode == 13)) {
+    currentIndex = updateIndex(currentIndex,'prev',slideCount);
+    showSlide(currentIndex);
+  }
+}
+
+function next(event) {
+  if (event.type == "click" || (event.type == "keypress" && event.keyCode == 13)) {
+    currentIndex = updateIndex(currentIndex,'next',slideCount);
+    showSlide(currentIndex);
+  }
+}
 
 function showSlide(index) {
 
