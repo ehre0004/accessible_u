@@ -23,6 +23,7 @@ $(document).ready(function() {
     'src': 'images/8675309-arrow-right.png'
   });
   var prevButton = $('<div>')
+    .attr("tabindex","0")
     .addClass('btn-prev')
     .on('click',previous(event))
     .on('keypress', previous(event))
