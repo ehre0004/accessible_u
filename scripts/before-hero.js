@@ -9,11 +9,8 @@ $(document).ready(function() {
 
   // get all slides
   var $slides = $('.slide');
-  var slideCount = $slides.length;
-  $('#slideCount').text(slideCount);
-
-  // save a pointer to the current slide
-  var currentIndex = 0;
+  var slideCount = $slides.length; // count the slides...
+  $('#slideCount').text(slideCount); // ... and set slide count
 
   // add previous/next buttons
   var navButtons = $('<div>');
@@ -24,19 +21,19 @@ $(document).ready(function() {
     'src': 'images/8675309-arrow-right.png'
   });
   var prevButton = $('<div>')
-    .attr('tabindex','0')
+    .attr({tabindex:'0', title:'Previous carousel slide'})
     .addClass('btn-prev')
     .on({
-      click: function() {previous(event)},
-      keypress: function() {previous(event)}
+      click: function() {changeSlide(event, "prev")},
+      keypress: function() {changeSlide(event, "prev")}
     })
     .html(prevIcon);
   var nextButton = $('<div>')
-    .attr('tabindex','0')
+    .attr({tabindex:'0', title:'Next carousel slide'})
     .addClass('btn-next')
     .on({
-      click: function() {next(event)},
-      keypress: function() {next(event)}
+      click: function() {changeSlide(event, "next")},
+      keypress: function() {changeSlide(event, "next")}
     })
     .html(nextIcon);
 
@@ -60,31 +57,19 @@ $(document).ready(function() {
   showSlide(0);
 });
 
-function previous(event) {
+// change slides, forward or back
+function changeSlide(event, direction) {
   if (event.type == "click" || (event.type == "keypress" && event.keyCode == 13)) {
-    setIndex( updateIndex(getIndex(), 'prev', getSlideCount()) );
+    setIndex( updateIndex(getIndex(), direction, getSlideCount()) );
     showSlide( getIndex() );
   }
 }
-
-function next(event) {
-  if (event.type == "click" || (event.type == "keypress" && event.keyCode == 13)) {
-    setIndex( updateIndex(getIndex(), 'next', getSlideCount()) );
-    showSlide( getIndex() );
-  }
-}
-
-function setIndex(num) {
-  $('#slideIndex').text(num);
-}
-
-function getIndex() {
-  return Number($('#slideIndex').text());
-}
-
-function getSlideCount() {
-  return Number($('#slideCount').text());
-}
+// update slide index in HTML carousel
+function setIndex(num) { $('#slideIndex').text(num); }
+// get slide index from HTML carousel
+function getIndex() { return Number($('#slideIndex').text()); }
+// get slide index from HTML carousel
+function getSlideCount() { return Number($('#slideCount').text()); }
 
 function showSlide(index) {
 
