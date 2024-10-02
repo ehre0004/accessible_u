@@ -25,14 +25,18 @@ $(document).ready(function() {
   var prevButton = $('<div>')
     .attr("tabindex","0")
     .addClass('btn-prev')
-    .on('click', previous)
-    .on('keypress', previous)
+    .on({
+      click: previous.bind(event),
+      keypress: previous.bind(event)
+    })
     .html(prevIcon);
   var nextButton = $('<div>')
     .attr("tabindex","0")
     .addClass('btn-next')
-    .on('click', (event) => next(event))
-    .on('keypress', (event) => next(event))
+    .on({
+      click: next.bind(event),
+      keypress: next.bind(event)
+    })
     .html(nextIcon);
 
   navButtons.append(prevButton,nextButton);
