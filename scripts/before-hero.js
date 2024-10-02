@@ -5,15 +5,15 @@
  * before-carousel.js = Custom inaccessible Carousel
  */
 
-  // save a pointer to the current slide
-var currentIndex = 0;
-
 $(document).ready(function() {
 
   // get all slides
   var $slides = $('.slide');
   var slideCount = $slides.length;
+  $('#slideCount').text(slideCount);
 
+  // save a pointer to the current slide
+  var currentIndex = 0;
 
   // add previous/next buttons
   var navButtons = $('<div>');
@@ -24,7 +24,7 @@ $(document).ready(function() {
     'src': 'images/8675309-arrow-right.png'
   });
   var prevButton = $('<div>')
-    .attr("tabindex","0")
+    .attr('tabindex','0')
     .addClass('btn-prev')
     .on({
       click: function() {previous(event)},
@@ -32,7 +32,7 @@ $(document).ready(function() {
     })
     .html(prevIcon);
   var nextButton = $('<div>')
-    .attr("tabindex","0")
+    .attr('tabindex','0')
     .addClass('btn-next')
     .on({
       click: function() {next(event)},
@@ -61,16 +61,28 @@ $(document).ready(function() {
 
 function previous(event) {
   if (event.type == "click" || (event.type == "keypress" && event.keyCode == 13)) {
-    currentIndex = updateIndex(currentIndex,'prev',slideCount);
+    setIndex( updateIndex(getIndex(), 'prev', getSlideCount()) );
     showSlide(currentIndex);
   }
 }
 
 function next(event) {
   if (event.type == "click" || (event.type == "keypress" && event.keyCode == 13)) {
-    currentIndex = updateIndex(currentIndex,'next',slideCount);
+    setIndex( updateIndex(getIndex(), 'next', getSlideCount()) );
     showSlide(currentIndex);
   }
+}
+
+function setIndex(num) {
+  $('#slideIndex').text(num);
+}
+
+function getIndex() {
+  return Number($('#slideIndex').text());
+}
+
+function getSlideCount() {
+  return Number($('#slideCount').text());
 }
 
 function showSlide(index) {
