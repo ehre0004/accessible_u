@@ -5,14 +5,15 @@
  * before-carousel.js = Custom inaccessible Carousel
  */
 
+  // save a pointer to the current slide
+var currentIndex = 0;
+
 $(document).ready(function() {
 
   // get all slides
   var $slides = $('.slide');
   var slideCount = $slides.length;
 
-  // save a pointer to the current slide
-  var currentIndex = 0;
 
   // add previous/next buttons
   var navButtons = $('<div>');
@@ -26,16 +27,16 @@ $(document).ready(function() {
     .attr("tabindex","0")
     .addClass('btn-prev')
     .on({
-      click: Function.bind(previous, event),
-      keypress: Function.bind(previous, event)
+      click: function() {previous(event)},
+      keypress: function() {previous(event)}
     })
     .html(prevIcon);
   var nextButton = $('<div>')
     .attr("tabindex","0")
     .addClass('btn-next')
     .on({
-      click: Function.bind(next, event),
-      keypress: Function.bind(next, event)
+      click: function() {next(event)},
+      keypress: function() {next(event)}
     })
     .html(nextIcon);
 
